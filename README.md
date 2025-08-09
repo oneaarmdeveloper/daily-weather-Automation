@@ -38,7 +38,7 @@ This project demonstrates an automated workflow built using **n8n** (free plan) 
 - Example output in email: "Current weather in Regensburg: 22°C, Sunny."
 
 ## Screenshots
-C:\Users\kason\OneDrive\Documents\ShareX\Screenshots\2025-08\brave_J7FLx0AxXd.png
+"C:\Users\kason\OneDrive\Documents\ShareX\Screenshots\2025-08\brave_J7FLx0AxXd.png"
 
 ## Future Improvements
 - **Data Processing**: Add a Python node to parse and format weather data (e.g., convert Kelvin to Celsius).
