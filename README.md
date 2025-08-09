@@ -58,5 +58,5 @@ such as those relevant to Organisations and Companies
 This project is open-source under the MIT License. Feel free to use, modify, and contribute!
 
 ## Contact
-- GitHub: [Your GitHub Username](https://github.com/oneaarmdeveloper)
+- GitHub: https://github.com/oneaarmdeveloper    
 
