@@ -1,0 +1,117 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            },
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "14596105-4fe6-43f1-9359-3a9f13030b3c",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://api.openweathermap.org/data/2.5/weather",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "Regensburg,DE"
+            },
+            {
+              "name": "appid",
+              "value": "79f2657801a29501ff6f8ff35c04b32d"
+            },
+            {
+              "name": "units",
+              "value": "metric"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "ab9c3066-b9d8-4332-be60-bdf5a506d04a",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "fromEmail": "anselmicheku@gmail.com",
+        "toEmail": "anselmebuka09@gmail.com",
+        "subject": "Daily Weather Report",
+        "emailFormat": "text",
+        "text": "=Good morning! Here's your daily weather report:\n\nCity: {{$node[\"HTTP Request\"].json[\"name\"]}}, {{$node[\"HTTP Request\"].json[\"sys\"][\"country\"]}}\nWeather: {{$node[\"HTTP Request\"].json[\"weather\"][0][\"description\"]}}\nTemperature: {{$node[\"HTTP Request\"].json[\"main\"][\"temp\"]}}°C\nFeels Like: {{$node[\"HTTP Request\"].json[\"main\"][\"feels_like\"]}}°C\nHumidity: {{$node[\"HTTP Request\"].json[\"main\"][\"humidity\"]}}%\nWind Speed: {{$node[\"HTTP Request\"].json[\"wind\"][\"speed\"]}} m/s\n\nHave a great day!\n\n---\nSent automatically by n8n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "69a8a9ab-e1c4-438d-b911-86341afba4d0",
+      "name": "Send email",
+      "webhookId": "d26cebd7-ba5e-47cd-a23e-64604edd1cb0",
+      "credentials": {
+        "smtp": {
+          "id": "xEpotw0dS3c3sfpY",
+          "name": "SMTP account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Send email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b2124470-7cc6-4097-90cb-6742fafd053b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ad1618a260b5e7b66cb12e5e6705b43346d1526b12ae64b73ebb5886dca3778e"
+  },
+  "id": "6xNlE5meSW2t0XkA",
+  "tags": []
+}
